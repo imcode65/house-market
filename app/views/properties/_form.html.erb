@@ -1,0 +1,61 @@
+<%= form_with(model: property, class: 'my-4') do |form| %>
+  <% if property.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+      <ul>
+        <% property.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2 class="fw-bold text-success">Edit Property</h2>
+
+  <div class="bg-light p-4 mt-4 border rounded">
+    <div class="row">
+      <div class="col-3">
+        <span class="fw-bold">Edit Property Details</span>
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <%= form.label :Title, class: "form-label", style: "display: block" %>
+            <%= form.text_field :Title, class: "form-control" %>
+          </div>
+          <div class="mb-3 col-md-6">
+            <%= form.label :District, class: "form-label", style: "display: block" %>
+            <%= form.text_field :District, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <%= form.label :size, class: "form-label", style: "display: block" %>
+            <%= form.text_field :size, class: "form-control" %>
+          </div>
+          <div class="mb-3 col-md-6">
+            <%= form.label :rent, class: "form-label", style: "display: block" %>
+            <%= form.text_field :rent, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :property_type, class: "form-label", style: "display: block" %>
+          <%= form.select :property_type, Property.property_types.keys, { prompt: "Select type" }, class: 'form-select', required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :city, class: "form-label", style: "display: block" %>
+          <%= form.select :city, Property.cities.keys, { prompt: "Select city" }, class: 'form-select', required: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mt-3">
+    <div>
+      <%= form.submit 'Save', class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div id="<%= dom_id property %>">
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Title:</strong>
+        <%= property.Title %>
+      </div>
+      <div class="col-md-3">
+        <strong>District:</strong>
+        <%= property.District %>
+      </div>
+      <div class="col-md-3">
+        <strong>Size:</strong>
+        <%= property.size %>
+      </div>
+      <div class="col-md-3">
+        <strong>Rent:</strong>
+        <%= number_with_precision(property.rent/12, precision: 2) %>/month
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-3">
+        <strong>Type:</strong>
+        <%= property.property_type %>
+      </div>
+      <div class="col-md-3">
+        <strong>City:</strong>
+        <%= property.city %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div>
+    <%= link_to "Edit this property", edit_property_path(property), class: "btn btn-outline-success" %>
+    <%= button_to "Destroy this property", property, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger ms-2" %>
+  </div>
+</div>

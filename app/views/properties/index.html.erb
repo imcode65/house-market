@@ -1,0 +1,72 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container my-3">
+  <h1>Properties</h1>
+
+  <%= form_with(url: properties_path, method: :get, local: true, class: 'my-4') do |form| %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :district, "District" %>
+          <%= form.text_field :district, class: 'form-control', placeholder: 'Enter district' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :property_type, "Property Type" %>
+          <%= form.select :property_type, options_for_select(["residential", "office", "retail"], params[:property_type]), { include_blank: true }, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :city, "City" %>
+          <%= form.select :city, options_for_select(["taipei_City", "New_Taipei_City"], params[:city]), { include_blank: true }, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :min_size, "Minimum Size" %>
+          <%= form.number_field :min_size, class: 'form-control', placeholder: 'Enter minimum size' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :max_size, "Maximum Size" %>
+          <%= form.number_field :max_size, class: 'form-control', placeholder: 'Enter maximum size' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :min_rent, "Minimum Rent" %>
+          <%= form.number_field :min_rent, class: 'form-control', placeholder: 'Enter minimum rent' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= form.label :max_rent, "Maximum Rent" %>
+          <%= form.number_field :max_rent, class: 'form-control', placeholder: 'Enter maximum rent' %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <%= form.submit 'Search', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="properties">
+  <% @properties.each do |property| %>
+    <%= render property %>
+    <p>
+      <%= link_to "Show this property", property %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New property", new_property_path, class: 'btn btn-primary my-3' %>

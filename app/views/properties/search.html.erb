@@ -1,0 +1,10 @@
+<% if @properties.any? %>
+  <h3>Search Results:</h3>
+  <ul>
+    <% @properties.each do |property| %>
+      <li><%= property.Title %> in <%= property.District %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No properties found for the specified district.</p>
+<% end %>
